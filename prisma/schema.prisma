@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model ApiKey {
+  id         String    @id @default(cuid())
+  name       String
+  hashedKey  String    @unique
+  isActive   Boolean   @default(true)
+  lastUsedAt DateTime?
+  expiresAt  DateTime?
+  createdAt  DateTime  @default(now())
+  jobs       JobLog[]
+}
+
+model JobLog {
+  id          String    @id @default(cuid())
+  apiKeyId    String?
+  apiKey      ApiKey?   @relation(fields: [apiKeyId], references: [id])
+  event       String
+  payload     Json
+  status      JobStatus @default(QUEUED)
+  attempts    Int       @default(0)
+  error       String?
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+}
+
+enum JobStatus {
+  QUEUED
+  PROCESSING
+  COMPLETED
+  FAILED
+}

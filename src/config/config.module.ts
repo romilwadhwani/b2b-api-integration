@@ -3,11 +3,11 @@ import { ConfigModule } from '@nestjs/config';
 
 const REQUIRED_VARS = [
   'DATABASE_URL',
-  'UPSTASH_REDIS_HOST',
-  'UPSTASH_REDIS_PORT',
-  'UPSTASH_REDIS_PASSWORD',
-  'SLACK_BOT_TOKEN',
-  'SLACK_CHANNEL_ID',
+  // 'UPSTASH_REDIS_HOST',   // added in Phase 7
+  // 'UPSTASH_REDIS_PORT',   // added in Phase 7
+  // 'UPSTASH_REDIS_PASSWORD', // added in Phase 7
+  // 'SLACK_BOT_TOKEN',      // added in Phase 8
+  // 'SLACK_CHANNEL_ID',     // added in Phase 8
   'ADMIN_SECRET',
 ];
 
