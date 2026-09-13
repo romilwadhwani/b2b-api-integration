@@ -6,8 +6,8 @@ const REQUIRED_VARS = [
   'UPSTASH_REDIS_HOST',
   'UPSTASH_REDIS_PORT',
   'UPSTASH_REDIS_PASSWORD',
-  // 'SLACK_BOT_TOKEN',      // added in Phase 8
-  // 'SLACK_CHANNEL_ID',     // added in Phase 8
+  'SLACK_BOT_TOKEN',
+  'SLACK_CHANNEL_ID',
   'ADMIN_SECRET',
 ];
 

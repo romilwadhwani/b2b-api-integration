@@ -2,13 +2,17 @@ import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Logger } from '@nestjs/common';
 import { Job } from 'bullmq';
 import { PrismaService } from '../database/prisma.service';
+import { SlackService } from '../slack/slack.service';
 import { SlackJobData } from './queue.service';
 
 @Processor('slack-notifications')
 export class QueueProcessor extends WorkerHost {
   private readonly logger = new Logger(QueueProcessor.name);
 
-  constructor(private readonly prisma: PrismaService) {
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly slackService: SlackService,
+  ) {
     super();
   }
 
@@ -21,9 +25,12 @@ export class QueueProcessor extends WorkerHost {
     });
 
     try {
-      // SlackService injected in Phase 8 — placeholder call
-      this.logger.log(`Processing job ${jobLogId} for event: ${event}`);
-      this.logger.debug(`Payload: ${JSON.stringify(payload)}`);
+      await this.slackService.sendMessage({
+        jobLogId,
+        event,
+        payload,
+        receivedAt: new Date().toISOString(),
+      });
 
       await this.prisma.jobLog.update({
         where: { id: jobLogId },

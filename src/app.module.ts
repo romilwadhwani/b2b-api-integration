@@ -7,6 +7,7 @@ import { AppConfigModule } from './config/config.module';
 import { PrismaModule } from './database/prisma.module';
 import { ApiKeysModule } from './api-keys/api-keys.module';
 import { QueueModule } from './queue/queue.module';
+import { SlackModule } from './slack/slack.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { QueueModule } from './queue/queue.module';
     PrismaModule,
     ApiKeysModule,
     QueueModule,
+    SlackModule,
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

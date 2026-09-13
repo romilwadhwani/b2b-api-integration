@@ -3,6 +3,7 @@ import { BullModule } from '@nestjs/bullmq';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { QueueService } from './queue.service';
 import { QueueProcessor } from './queue.processor';
+import { SlackModule } from '../slack/slack.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { QueueProcessor } from './queue.processor';
       }),
     }),
     BullModule.registerQueue({ name: 'slack-notifications' }),
+    SlackModule,
   ],
   providers: [QueueService, QueueProcessor],
   exports: [QueueService],
