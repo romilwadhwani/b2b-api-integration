@@ -17,6 +17,8 @@
     "incremental": true,
     "skipLibCheck": true,
     "strict": true,
-    "strictPropertyInitialization": false
-  }
+    "strictPropertyInitialization": false,
+    "rootDir": "./src"
+  },
+  "exclude": ["node_modules", "dist", "prisma.config.ts", "jest.config.ts", "tsconfig.test.json", "prisma", "test"]
 }
