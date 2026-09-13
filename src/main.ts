@@ -12,7 +12,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new LoggingInterceptor());
 
   const config = new DocumentBuilder()
-    .setTitle('B1 — B2B API Integration Service')
+    .setTitle('B2B API Integration Service')
     .setDescription(
       'B2B API service demonstrating async job queuing, ' +
         'API key auth, rate limiting, and Slack integration',
