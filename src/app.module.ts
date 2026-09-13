@@ -6,12 +6,14 @@ import { AppController } from './app.controller';
 import { AppConfigModule } from './config/config.module';
 import { PrismaModule } from './database/prisma.module';
 import { ApiKeysModule } from './api-keys/api-keys.module';
+import { QueueModule } from './queue/queue.module';
 
 @Module({
   imports: [
     AppConfigModule,
     PrismaModule,
     ApiKeysModule,
+    QueueModule,
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
