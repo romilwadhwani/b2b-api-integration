@@ -2,6 +2,10 @@
 
 A production-ready NestJS service demonstrating async webhook ingestion, BullMQ job queuing, API key authentication, rate limiting, and Slack notification delivery — built as a portfolio piece showcasing enterprise backend patterns.
 
+**Live:** https://b2b-api-integration-production.up.railway.app/  
+**Docs:** https://b2b-api-integration-production.up.railway.app/api
+**Health:** https://b2b-api-integration-production.up.railway.app/health
+
 ---
 
 ## What it does
