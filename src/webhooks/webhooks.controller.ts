@@ -1,11 +1,14 @@
 import { Body, Controller, HttpCode, Post, Req, UseGuards } from '@nestjs/common';
+import { ApiOperation, ApiResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
+import { ApiKey, Prisma } from '@prisma/client';
 import { ApiKeyGuard } from '../common/guards/api-key.guard';
 import { PrismaService } from '../database/prisma.service';
 import { QueueService } from '../queue/queue.service';
 import { TriggerEventDto } from './dto/trigger-event.dto';
-import { ApiKey, Prisma } from '@prisma/client';
 
+@ApiTags('Webhooks')
+@ApiSecurity('ApiKey')
 @Controller('api/webhooks')
 @UseGuards(ApiKeyGuard)
 export class WebhooksController {
@@ -16,6 +19,11 @@ export class WebhooksController {
 
   @Post('trigger')
   @HttpCode(202)
+  @ApiOperation({ summary: 'Trigger an event — queues async Slack notification, returns immediately' })
+  @ApiResponse({ status: 202, description: 'Event queued successfully' })
+  @ApiResponse({ status: 400, description: 'Validation error' })
+  @ApiResponse({ status: 401, description: 'Invalid, revoked, or expired API key' })
+  @ApiResponse({ status: 429, description: 'Rate limit exceeded' })
   async trigger(
     @Body() dto: TriggerEventDto,
     @Req() req: Request & { apiKey: ApiKey },
