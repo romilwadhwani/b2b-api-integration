@@ -9,6 +9,7 @@ import { ApiKeysModule } from './api-keys/api-keys.module';
 import { QueueModule } from './queue/queue.module';
 import { SlackModule } from './slack/slack.module';
 import { WebhooksModule } from './webhooks/webhooks.module';
+import { JobsModule } from './jobs/jobs.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { WebhooksModule } from './webhooks/webhooks.module';
     QueueModule,
     SlackModule,
     WebhooksModule,
+    JobsModule,
     ThrottlerModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
