@@ -17,6 +17,14 @@ import { SlackModule } from '../slack/slack.module';
           password: configService.get<string>('UPSTASH_REDIS_PASSWORD'),
           tls: {},
         },
+        defaultJobOptions: {
+          removeOnComplete: 100,
+          removeOnFail: 100,
+        },
+        workers: {
+          drainDelay: 30_000,
+          stalledInterval: 300_000,
+        },
       }),
     }),
     BullModule.registerQueue({ name: 'slack-notifications' }),
