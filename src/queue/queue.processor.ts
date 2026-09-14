@@ -5,7 +5,10 @@ import { PrismaService } from '../database/prisma.service';
 import { SlackService } from '../slack/slack.service';
 import { SlackJobData } from './queue.service';
 
-@Processor('slack-notifications')
+@Processor('slack-notifications', {
+  drainDelay: 30_000,
+  stalledInterval: 300_000,
+})
 export class QueueProcessor extends WorkerHost {
   private readonly logger = new Logger(QueueProcessor.name);
 

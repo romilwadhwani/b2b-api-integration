@@ -21,10 +21,6 @@ import { SlackModule } from '../slack/slack.module';
           removeOnComplete: 100,
           removeOnFail: 100,
         },
-        workers: {
-          drainDelay: 30_000,
-          stalledInterval: 300_000,
-        },
       }),
     }),
     BullModule.registerQueue({ name: 'slack-notifications' }),
